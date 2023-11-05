@@ -12,19 +12,41 @@ public class PerformTest implements CollectionTest{
 
     //variables
     private int collectionSize;
-    private int sum;
-    //private int searchedValue;
-    private Person searchedValue;
-    private Person searchedResult;
+
+    private ArrayList <Person> actualArray;
+    private LinkedList <Person> actualLinked;
+    private HashMap <Integer, Person> actualHash;
     
-    //Creating an array list
-    private ArrayList<Person> arrayList = new ArrayList<Person>(collectionSize);
 
-    //Creating a linked list
-    private LinkedList<Person> linkedList = new LinkedList<Person>();
+    //Creating and population of Array List
+    private ArrayList<Person> addArray(int collectionSize){
+        ArrayList<Person> arrayList = new ArrayList<Person>();
+        for (int i = 0; i < collectionSize; i++){
+            Person p = new Person("person" + i, 19);
+            arrayList.add(p);
+        }
+        return arrayList;
+    }
 
-    //Creating a hashmap
-    private HashMap<Integer,Person> hashMap = new HashMap<Integer,Person>();    
+    //Creating and population of Linked List
+    private LinkedList<Person> addLinked(int collectionSize){
+        LinkedList<Person> linkedList = new LinkedList<Person>();
+        for (int i = 0; i < collectionSize; i++){
+            Person p = new Person("person" + i, 19);
+            linkedList.add(p);
+        }
+        return linkedList;
+    }
+
+    //Creating and population of Hash Map
+    private HashMap<Integer, Person> addHash(int collectionSize){
+        HashMap<Integer, Person> hashMap = new HashMap<Integer, Person>();
+        for (int i = 0; i < collectionSize; i++){
+            Person p = new Person("person" + i, 19);
+            hashMap.put(p.hashCode(), p);
+        }
+        return hashMap;
+    }
     
     
     //setSize method
@@ -38,45 +60,37 @@ public class PerformTest implements CollectionTest{
         //Array List ADD
         if (type == CollectionType.ARRAY_LIST){
             if (test == TestType.ADD){
-                for (int i = 0; i < collectionSize; i++){
-                    Person p = new Person("person" + i, 19);
-                    arrayList.add(p);
-                }
+                actualArray = addArray(collectionSize);
             }
         //Linked list ADD
         } else if (type == CollectionType.LINKED_LIST){
             if (test == TestType.ADD){
-                for (int i = 0; i < collectionSize; i++){
-                    Person p = new Person("person"+i,19);
-                    linkedList.add(p);
-                }
+                actualLinked = addLinked(collectionSize);
             }
+
         //Hash map ADD
         } else if (type == CollectionType.HASH_MAP){
             if (test == TestType.ADD){
-                for (int i = 0; i < collectionSize; i++){
-                    Person p = new Person("person"+i,19);
-                    hashMap.put(p.hashCode(), p);
-                }
+                actualHash = addHash(collectionSize);
             } 
         }
 
         for (int i = 0; i < iterations; i++){
             if (test == TestType.INDEX){
                 if (type == CollectionType.ARRAY_LIST){
-                    index(arrayList);
+                    index(actualArray);
                 } else if (type == CollectionType.LINKED_LIST){
-                    index(linkedList);
+                    index(actualLinked);
                 } else if (type == CollectionType.HASH_MAP){
 
                 }
             } else if (test == TestType.SEARCH){
                 if (type == CollectionType.ARRAY_LIST){
-                    search(arrayList);
+                    search(actualArray);
                 } else if (type == CollectionType.LINKED_LIST){
-                    search(linkedList);
+                    search(actualLinked);
                 } else if (type == CollectionType.HASH_MAP){
-                    searchHashMap(hashMap);
+                    searchHashMap(actualHash);
                 }
             }
         }
@@ -102,6 +116,7 @@ public class PerformTest implements CollectionTest{
         }
     }
 
+    //search method for hashmap
     public void searchHashMap(HashMap<Integer, Person>map){
         int ID = collectionSize/2;
         if (map.containsKey(ID)){
@@ -109,31 +124,6 @@ public class PerformTest implements CollectionTest{
         }
     }
 
-
-
-    // //INDEX TEST TYPE
-    // public Person index(CollectionType type, TestType test, int index){
-    //     if (type == CollectionType.ARRAY_LIST){
-    //         if (test == TestType.INDEX){
-    //             for (int i = 0; i < collectionSize; i++){
-    //                 searchedResult =  arrayList.get(index);
-    //             }
-    //         }
-    //     } else if (type == CollectionType.LINKED_LIST){
-    //         if (test == TestType.INDEX){
-    //             for (int i = 0; i < collectionSize; i++){
-    //                 searchedResult =  linkedList.get(index);
-    //             }
-    //         }
-    //     } else if (type == CollectionType.HASH_MAP){
-
-    //     }
-
-    //     return searchedResult;
-    // }
-
-
-    //SEARCH TEST TYPE
 
 }
 
