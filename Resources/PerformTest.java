@@ -1,13 +1,20 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 public class PerformTest implements CollectionTest{
     
+    public PerformTest(){
+        
+    }
+
+
     //variables
     private int collectionSize;
     private int sum;
-    private int searchedValue;
+    //private int searchedValue;
+    private Person searchedValue;
     private Person searchedResult;
     
     //Creating an array list
@@ -26,7 +33,7 @@ public class PerformTest implements CollectionTest{
     }
 
     //ADD TEST TYPE
-    public void add(CollectionType type, TestType test, int index){
+    public void runTest(CollectionType type, TestType test, int index){
 
         //Array List ADD
         if (type == CollectionType.ARRAY_LIST){
@@ -55,6 +62,26 @@ public class PerformTest implements CollectionTest{
         }
     }
 
+    //index method
+    public void index(List<Person> list){
+        int index = collectionSize/2;
+        while (index >= 0 && index < collectionSize){
+            Person p = list.get(index);
+        }
+    }
+
+    //search method
+    public void search(List<Person> list){
+        String personSearched = "person" + collectionSize/2;
+        for (int i = 0; i < collectionSize; i++){
+            Person p = list.get(i);
+            if (p.getName().equals(personSearched)){
+                break;
+            }
+        }
+    }
+
+
 
     //INDEX TEST TYPE
     public Person index(CollectionType type, TestType test, int index){
@@ -76,6 +103,9 @@ public class PerformTest implements CollectionTest{
 
         return searchedResult;
     }
+
+
+    //SEARCH TEST TYPE
 
 }
 
