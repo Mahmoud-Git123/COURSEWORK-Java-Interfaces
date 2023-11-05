@@ -33,7 +33,7 @@ public class PerformTest implements CollectionTest{
     }
 
     //ADD TEST TYPE
-    public void runTest(CollectionType type, TestType test, int index){
+    public void runTest(CollectionType type, TestType test, int iterations){
 
         //Array List ADD
         if (type == CollectionType.ARRAY_LIST){
@@ -60,6 +60,27 @@ public class PerformTest implements CollectionTest{
                 }
             } 
         }
+
+        for (int i = 0; i < iterations; i++){
+            if (test == TestType.INDEX){
+                if (type == CollectionType.ARRAY_LIST){
+                    index(arrayList);
+                } else if (type == CollectionType.LINKED_LIST){
+                    index(linkedList);
+                } else if (type == CollectionType.HASH_MAP){
+
+                }
+            } else if (test == TestType.SEARCH){
+                if (type == CollectionType.ARRAY_LIST){
+                    search(arrayList);
+                } else if (type == CollectionType.LINKED_LIST){
+                    search(linkedList);
+                } else if (type == CollectionType.HASH_MAP){
+                    searchHashMap(hashMap);
+                }
+            }
+        }
+        
     }
 
     //index method
@@ -72,7 +93,7 @@ public class PerformTest implements CollectionTest{
 
     //search method
     public void search(List<Person> list){
-        String personSearched = "person" + collectionSize/2;
+        String personSearched = ("person" + collectionSize/2);
         for (int i = 0; i < collectionSize; i++){
             Person p = list.get(i);
             if (p.getName().equals(personSearched)){
@@ -81,28 +102,35 @@ public class PerformTest implements CollectionTest{
         }
     }
 
-
-
-    //INDEX TEST TYPE
-    public Person index(CollectionType type, TestType test, int index){
-        if (type == CollectionType.ARRAY_LIST){
-            if (test == TestType.INDEX){
-                for (int i = 0; i < collectionSize; i++){
-                    searchedResult =  arrayList.get(index);
-                }
-            }
-        } else if (type == CollectionType.LINKED_LIST){
-            if (test == TestType.INDEX){
-                for (int i = 0; i < collectionSize; i++){
-                    searchedResult =  linkedList.get(index);
-                }
-            }
-        } else if (type == CollectionType.HASH_MAP){
-
+    public void searchHashMap(HashMap<Integer, Person>map){
+        int ID = collectionSize/2;
+        if (map.containsKey(ID)){
+            Person p = map.get(ID);
         }
-
-        return searchedResult;
     }
+
+
+
+    // //INDEX TEST TYPE
+    // public Person index(CollectionType type, TestType test, int index){
+    //     if (type == CollectionType.ARRAY_LIST){
+    //         if (test == TestType.INDEX){
+    //             for (int i = 0; i < collectionSize; i++){
+    //                 searchedResult =  arrayList.get(index);
+    //             }
+    //         }
+    //     } else if (type == CollectionType.LINKED_LIST){
+    //         if (test == TestType.INDEX){
+    //             for (int i = 0; i < collectionSize; i++){
+    //                 searchedResult =  linkedList.get(index);
+    //             }
+    //         }
+    //     } else if (type == CollectionType.HASH_MAP){
+
+    //     }
+
+    //     return searchedResult;
+    // }
 
 
     //SEARCH TEST TYPE
