@@ -93,7 +93,14 @@ public class PerformTest implements CollectionTest{
     }
 
     public void indexHashMap(HashMap<Integer, Person>map){
-
+        int ID = collectionSize/2;
+        
+        for (Map.Entry<Integer, Person> entry : map.entrySet()) {
+            if (entry.getKey() == map.keySet().toArray()[ID]) {
+                entry.getValue();
+                break;
+            }
+        }
     }
 
     public void search(List<Person> list){
@@ -108,7 +115,10 @@ public class PerformTest implements CollectionTest{
     }
 
     public void searchHashMap(HashMap<Integer, Person>map){
-
+        int ID = collectionSize/2;    
+        if (map.containsKey(ID)){
+            Person p = map.get(ID);
+        }
     }
 
 
